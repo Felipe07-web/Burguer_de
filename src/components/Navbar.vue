@@ -1,8 +1,10 @@
 <template>
     <div>
       <div id="nav">
-        <router-link to="/">Fazer Pedido</router-link>
-        <router-link to="/pedidos">Pedidos</router-link>
+        <div class="nav-links">
+          <router-link to="/">Fazer Pedido</router-link>
+          <router-link to="/pedidos">Pedidos</router-link>
+        </div>
       </div>
     </div>
   </template>
@@ -17,32 +19,36 @@
   
   <style scoped>
     #nav {
-      background-color: #222;
-      border-bottom: 4px solid #111;
+      background-color: var(--dark-bg);
+      border-bottom: 4px solid var(--primary-color);
       padding: 15px 50px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
   
-    #nav #logo-url {
-      margin: auto;
-      margin-left: 0;
-    }
-  
-    #logo {
-      width: 40px;
-      height: 40px;
+    .nav-links {
+      display: flex;
+      gap: 15px;
     }
   
     #nav a {
-      color: #fcba03;
+      color: #fff;
       text-decoration: none;
-      margin: 12px;
-      transition: .5s;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
     }
   
-    #nav a:hover {
-      color: #FFF;
+    #nav a:not(#logo-url):hover,
+    #nav a.router-link-exact-active:not(#logo-url) {
+      background-color: var(--primary-color);
+      color: var(--dark-bg);
+      font-weight: 600;
     }
   </style>

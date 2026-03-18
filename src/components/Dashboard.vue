@@ -116,47 +116,84 @@
     }
   
     #burger-table-heading {
-      font-weight: bold;
-      padding: 12px;
-      border-bottom: 3px solid #333;
+      font-weight: 700;
+      padding: 16px;
+      border-bottom: 3px solid var(--dark-bg);
+      color: var(--dark-bg);
+      margin-bottom: 15px;
     }
   
     .burger-table-row {
       width: 100%;
-      padding: 12px;
-      border-bottom: 1px solid #CCC;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      background-color: #fff;
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+      box-shadow: var(--box-shadow);
+      align-items: center;
+      transition: all 0.3s;
+    }
+    
+    .burger-table-row:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+      border-color: var(--primary-color);
     }
   
     #burger-table-heading div,
     .burger-table-row div {
       width: 19%;
     }
+    
+    .burger-table-row ul {
+      padding-left: 20px;
+      color: #555;
+    }
   
     #burger-table-heading .order-id,
     .burger-table-row .order-number {
       width: 5%;
+      font-weight: 700;
+      color: var(--dark-bg);
+      font-size: 18px;
     }
   
     select {
-      padding: 12px 6px;
+      padding: 10px 12px;
       margin-right: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--light-bg);
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      width: 140px;
+    }
+    
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(252, 186, 3, 0.2);
     }
   
     .delete-btn {
-      background-color: #222;
-      color:#fcba03;
-      font-weight: bold;
-      border: 2px solid #222;
-      padding: 10px;
-      font-size: 16px;
-      margin: 0 auto;
+      background-color: var(--dark-bg);
+      color: var(--primary-color);
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 14px;
       cursor: pointer;
-      transition: .5s;
+      transition: all 0.3s;
+      width: 140px;
     }
     
     .delete-btn:hover {
-      background-color: transparent;
-      color: #222;
+      background-color: #e63946; 
+      color: #fff;
     }
     
   </style>

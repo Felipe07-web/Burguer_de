@@ -109,69 +109,108 @@ export default {
 
 <style scoped>
   #burger-form {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   }
 
   .input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   label {
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 15px;
-    color: #222;;
-    padding: 5px 10px;
-    border-left: 4px solid #fcba03;
+    color: var(--dark-bg);
+    padding: 5px 12px;
+    border-left: 4px solid var(--primary-color);
   }
 
   input, select {
-    padding: 5px 10px;
-    width: 300px;
+    padding: 12px 16px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+    background-color: var(--light-bg);
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(252, 186, 3, 0.2);
+    background-color: #fff;
   }
 
   #opcionais-container {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 15px;
   }
 
   #opcionais-title {
     width: 100%;
+    margin-bottom: 20px;
   }
 
   .checkbox-container {
     display: flex;
-    align-items: flex-start;
-    width: 50%;
-    margin-bottom: 20px;
+    align-items: center;
+    width: calc(50% - 15px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    transition: background-color 0.2s;
+  }
+  
+  .checkbox-container:hover {
+    background-color: #f0f0f0;
   }
 
   .checkbox-container span,
   .checkbox-container input {
     width: auto;
+    cursor: pointer;
+  }
+  
+  .checkbox-container input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
   }
 
   .checkbox-container span {
-    margin-left: 6px;
-    font-weight: bold;
+    margin-left: 10px;
+    font-weight: 500;
   }
 
   .submit-btn {
-    background-color: #222;
-    color:#fcba03;
-    font-weight: bold;
-    border: 2px solid #222;
-    padding: 10px;
+    background-color: var(--dark-bg);
+    color: var(--primary-color);
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
     font-size: 16px;
-    margin: 0 auto;
+    width: 100%;
     cursor: pointer;
-    transition: .5s;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
   }
 
   .submit-btn:hover {
-    background-color: transparent;
-    color: #222;
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(252, 186, 3, 0.3);
   }
 </style>

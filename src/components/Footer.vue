@@ -1,6 +1,6 @@
 <template>
     <div id="footer">
-      <p>Make Your Burger &copy; 2021</p>
+      <p>Crie Seu Hambúrguer &copy; 2023</p>
     </div>
   </template>
   
@@ -12,14 +12,15 @@
   
   <style scoped>
     #footer {
-      height: 200px;
-      background-color: #222;
-      border-top: 4px solid #111;
-      color: #fcba03;
+      height: 150px;
+      background-color: var(--dark-bg);
+      border-top: 4px solid var(--primary-color);
+      color: var(--primary-color);
       display: flex;
       align-items: center;
       justify-content: center;
       bottom: 0;
       width: 100%;
+      font-weight: 500;
     }
   </style>
