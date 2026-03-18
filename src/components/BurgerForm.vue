@@ -10,21 +10,21 @@
         <label for="pao">Escolha o pão:</label>
         <select name="pao" id="pao" v-model="pao">
           <option value="">Selecione o seu pão</option>
-          <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{ pao.tipo }}</option>
+          <option v-for="pao in paes" :key="pao.id" :value="pao.nome">{{ pao.nome }}</option>
         </select>
       </div>
       <div class="input-container">
         <label for="carne">Escolha a carne do seu Burger:</label>
         <select name="carne" id="carne" v-model="carne">
           <option value="">Selecione o tipo de carne</option>
-          <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">{{ carne.tipo }}</option>
+          <option v-for="carne in carnes" :key="carne.id" :value="carne.nome">{{ carne.nome }}</option>
         </select>
       </div>
       <div id="opcionais-container" class="input-container">
         <label id="opcionais-title" for="opcionais">Selecione os opcionais:</label>
         <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
-          <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
-          <span>{{ opcional.tipo }}</span>
+          <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.nome">
+          <span>{{ opcional.nome }}</span>
         </div>
       </div>
       <div class="input-container">
@@ -54,12 +54,18 @@ export default {
   },
   methods: {
     async getIngredientes() {
-      const req = await fetch('http://localhost:3000/ingredientes')
+      const req = await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/ingredientes?select=*`, {
+        headers: {
+          apikey: process.env.VUE_APP_SUPABASE_KEY,
+          Authorization: `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`
+        }
+      })
       const data = await req.json()
 
-      this.paes = data.paes
-      this.carnes = data.carnes
-      this.opcionaisdata = data.opcionais
+      // O Supabase retorna tudo como uma lista. Vamos separar pelos tipos:
+      this.paes = data.filter(item => item.tipo.toLowerCase() === 'pao')
+      this.carnes = data.filter(item => item.tipo.toLowerCase() === 'carne')
+      this.opcionaisdata = data.filter(item => item.tipo.toLowerCase() === 'opcional')
     },
     async createBurger(e) {
 
@@ -75,15 +81,17 @@ export default {
 
       const dataJson = JSON.stringify(data)    
 
-      const req = await fetch("http://localhost:3000/burgers", {
+      // Reparou no "burguers"? Estou usando o nome exato da tabela que você criou!
+      await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/burguers`, {
         method: "POST",
-        headers: { "Content-Type" : "application/json" },
+        headers: { 
+          "Content-Type" : "application/json",
+          "apikey": process.env.VUE_APP_SUPABASE_KEY,
+          "Authorization": `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`,
+          "Prefer": "return=representation"
+        },
         body: dataJson
       });
-
-      const res = await req.json()
-
-      console.log(res)
 
       this.msg = "Pedido realizado com sucesso!"
 

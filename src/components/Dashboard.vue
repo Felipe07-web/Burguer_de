@@ -17,8 +17,8 @@
           <div>{{ burger.pao }}</div>
           <div>{{ burger.carne }}</div>
           <div>
-            <ul v-for="(opcional, index) in burger.opcionais" :key="index">
-              <li>{{ opcional }}</li>
+            <ul>
+              <li v-for="(opcional, index) in burger.opcionais" :key="index">{{ opcional }}</li>
             </ul>
           </div>
           <div>
@@ -48,11 +48,23 @@
       },
       methods: {
         async getPedidos() {
-          const req = await fetch('http://localhost:3000/burgers')
+          const req = await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/burguers?select=*`, {
+            headers: {
+              apikey: process.env.VUE_APP_SUPABASE_KEY,
+              Authorization: `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`
+            }
+          })
   
           const data = await req.json()
   
-          this.burgers = data
+          this.burgers = data.map(burger => {
+            // Se o Supabase retornou o array como String, converte de volta para um Array
+            if (typeof burger.opcionais === 'string') {
+              try { burger.opcionais = JSON.parse(burger.opcionais); } 
+              catch(e) { burger.opcionais = []; }
+            }
+            return burger;
+          })
   
           // Resgata os status de pedidos
           this.getStatus()
@@ -60,7 +72,12 @@
         },
         async getStatus() {
   
-          const req = await fetch('http://localhost:3000/status')
+          const req = await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/status?select=*`, {
+            headers: {
+              apikey: process.env.VUE_APP_SUPABASE_KEY,
+              Authorization: `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`
+            }
+          })
   
           const data = await req.json()
   
@@ -69,11 +86,13 @@
         },
         async deleteBurger(id) {
   
-          const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-            method: "DELETE"
+          await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/burguers?id=eq.${id}`, {
+            method: "DELETE",
+            headers: {
+              apikey: process.env.VUE_APP_SUPABASE_KEY,
+              Authorization: `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`
+            }
           });
-  
-          const res = await req.json()
   
           this.getPedidos()
   
@@ -84,20 +103,20 @@
   
           const dataJson = JSON.stringify({status: option});
   
-          const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+          await fetch(`${process.env.VUE_APP_SUPABASE_URL}/rest/v1/burguers?id=eq.${id}`, {
             method: "PATCH",
-            headers: { "Content-Type" : "application/json" },
+            headers: { 
+              "Content-Type" : "application/json",
+              "apikey": process.env.VUE_APP_SUPABASE_KEY,
+              "Authorization": `Bearer ${process.env.VUE_APP_SUPABASE_KEY}`
+            },
             body: dataJson
           });
-  
-          const res = await req.json()
-  
-          console.log(res)
   
         }
       },
       mounted () {
-      this.getPedidos()
+        this.getPedidos()
       }
     }
   </script>
