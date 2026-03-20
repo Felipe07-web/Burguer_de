@@ -221,4 +221,14 @@ export default {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(252, 186, 3, 0.3);
   }
+
+  @media (max-width: 768px) {
+    #burger-form {
+      padding: 20px;
+    }
+    
+    .checkbox-container {
+      width: 100%;
+    }
+  }
 </style>

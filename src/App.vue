@@ -78,4 +78,15 @@ export default {
     background-color: var(--primary-color);
     border-radius: 2px;
   }
+
+  @media (max-width: 768px) {
+    .main-container {
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    
+    h1 {
+      font-size: 28px;
+    }
+  }
 </style>

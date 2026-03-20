@@ -51,4 +51,20 @@
       color: var(--dark-bg);
       font-weight: 600;
     }
+
+    @media (max-width: 768px) {
+      #nav {
+        padding: 15px 20px;
+        justify-content: center;
+      }
+      
+      .nav-links {
+        gap: 10px;
+      }
+      
+      #nav a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+    }
   </style>

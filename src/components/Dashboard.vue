@@ -215,4 +215,76 @@
       color: #fff;
     }
     
+    @media (max-width: 768px) {
+      #burger-table-heading {
+        display: none;
+      }
+      
+      .burger-table-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      #burger-table-heading div,
+      .burger-table-row div {
+        width: 100%;
+      }
+      
+      .burger-table-row .order-number {
+        width: 100%;
+        margin-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+      }
+      
+      .burger-table-row div:nth-child(2)::before {
+        content: "Cliente: ";
+        font-weight: bold;
+        color: var(--dark-bg);
+      }
+      
+      .burger-table-row div:nth-child(3)::before {
+        content: "Pão: ";
+        font-weight: bold;
+        color: var(--dark-bg);
+      }
+      
+      .burger-table-row div:nth-child(4)::before {
+        content: "Carne: ";
+        font-weight: bold;
+        color: var(--dark-bg);
+      }
+      
+      .burger-table-row div:nth-child(5)::before {
+        content: "Opcionais: ";
+        font-weight: bold;
+        color: var(--dark-bg);
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      .burger-table-row ul {
+        padding-left: 0;
+        list-style-position: inside;
+        margin-top: 5px;
+      }
+      
+      .burger-table-row div:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      
+      select {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0;
+      }
+
+      .delete-btn {
+        width: 100%;
+      }
+    }
   </style>

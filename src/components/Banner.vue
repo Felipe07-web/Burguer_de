@@ -63,5 +63,30 @@
       from { opacity: 0; transform: translateX(-50px); }
       to { opacity: 1; transform: translateX(0); }
     }
-  
+
+    @media (max-width: 768px) {
+      #main-banner {
+        height: 400px;
+        justify-content: center;
+        padding-left: 0;
+      }
+      
+      .banner-content {
+        padding: 30px 20px;
+        max-width: 90%;
+        border-left: none;
+        border-top: 6px solid var(--primary-color);
+        border-radius: 0 0 16px 16px;
+      }
+      
+      #main-banner h1 {
+        font-size: 36px;
+        text-align: center;
+      }
+      
+      #main-banner p {
+        font-size: 18px;
+        text-align: center;
+      }
+    }
   </style>
